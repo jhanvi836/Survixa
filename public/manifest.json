@@ -1,0 +1,50 @@
+{
+  "name": "Survixa — Emergency Disaster Response",
+  "short_name": "Survixa",
+  "description": "Unified AI-Powered Disaster Response Platform. Report emergencies offline and track multi-agency rescues.",
+  "start_url": "/report",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#e11d48",
+  "orientation": "portrait-primary",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["emergency", "utilities", "government"],
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Report Emergency",
+      "short_name": "Report",
+      "description": "Submit an urgent distress report",
+      "url": "/report",
+      "icons": [{ "src": "/icons/icon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Command Center",
+      "short_name": "Command",
+      "description": "Access Multi-Agency Operational Picture",
+      "url": "/command",
+      "icons": [{ "src": "/icons/icon.svg", "sizes": "any" }]
+    }
+  ]
+}

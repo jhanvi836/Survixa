@@ -1,0 +1,41 @@
+{
+  "name": "survixa-disaster-response",
+  "version": "1.0.0",
+  "description": "AI-Powered Unified Disaster Response Platform breaking agency silos with Next.js, Socket.io, and Prisma ORM",
+  "main": "src/server/index.ts",
+  "scripts": {
+    "dev": "tsx watch src/server/index.ts",
+    "dev:next": "next dev",
+    "build": "prisma generate && next build",
+    "start": "NODE_ENV=production tsx src/server/index.ts",
+    "postinstall": "prisma generate",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:studio": "prisma studio",
+    "prisma:seed": "tsx prisma/seed.ts"
+  },
+  "dependencies": {
+    "@google/genai": "^3.3.0",
+    "@prisma/client": "^6.4.1",
+    "clsx": "^2.1.1",
+    "dotenv": "^16.4.7",
+    "lucide-react": "^0.475.0",
+    "next": "^15.1.7",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1",
+    "tailwind-merge": "^3.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.4",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.2",
+    "prisma": "^6.4.1",
+    "tailwindcss": "^3.4.17",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3"
+  }
+}
