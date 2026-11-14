@@ -1,4 +1,5 @@
 import { PrismaClient, AgencyType, IncidentStatus, IncidentCategory, UnitStatus, UpdateVisibility } from "@prisma/client";
+import { hashPassword, DEMO_ACCOUNTS } from "../src/lib/auth";
 
 const prisma = new PrismaClient();
 
@@ -191,6 +192,26 @@ async function main() {
       },
     ],
   });
+
+  console.log("👤 Seeding Authentication Users...");
+  if ((prisma as any).user) {
+    await (prisma as any).user.deleteMany({});
+    for (const acc of DEMO_ACCOUNTS) {
+      const passwordHash = await hashPassword(acc.plainPassword);
+      await (prisma as any).user.create({
+        data: {
+          id: acc.id,
+          email: acc.email,
+          name: acc.name,
+          role: acc.role,
+          agency: acc.agency,
+          badgeNumber: acc.badgeNumber,
+          phone: acc.phone,
+          passwordHash,
+        },
+      });
+    }
+  }
 
   console.log("✅ Seed completed successfully!");
 }

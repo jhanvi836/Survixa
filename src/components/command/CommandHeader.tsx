@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Shield, Layers, Bot, Sparkles } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { Shield, Layers, Bot, Sparkles, LogOut } from "lucide-react";
 
 interface CommandHeaderProps {
   totalIncidents: number;
@@ -26,6 +27,17 @@ export function CommandHeader({
   simulationOpen,
   onToggleSimulation,
 }: CommandHeaderProps) {
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    try {
+      await fetch("/api/auth/logout", { method: "POST" });
+      router.push("/login");
+    } catch {
+      router.push("/login");
+    }
+  };
+
   const agencies = [
     { id: "ALL", label: "Joint Command (All)" },
     { id: "FIRE", label: "Fire & Rescue", color: "text-orange-400" },
@@ -102,6 +114,14 @@ export function CommandHeader({
               <span className="text-purple-400 font-bold mr-1.5">{duplicateClusters}</span>
               <span className="text-slate-400 uppercase text-[10px]">Deduplicated</span>
             </div>
+            <button
+              type="button"
+              onClick={handleLogout}
+              className="p-1.5 rounded-lg bg-slate-950 hover:bg-slate-800 text-slate-400 hover:text-rose-400 border border-slate-800 transition-colors"
+              title="Log Out of Command Session"
+            >
+              <LogOut className="w-3.5 h-3.5" />
+            </button>
           </div>
         </div>
       </div>

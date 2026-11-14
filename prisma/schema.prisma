@@ -58,6 +58,14 @@ enum UnitStatus {
   OFFLINE
 }
 
+/// User authorization role separating Citizen reporting from First Responder Command
+enum UserRole {
+  CITIZEN
+  COMMANDER
+  DISPATCHER
+  ADMIN
+}
+
 /// Information access tier for status update logs
 enum UpdateVisibility {
   PUBLIC               // Streamed to reporting citizen via the live feedback loop
@@ -208,4 +216,22 @@ model StatusUpdateLog {
   @@index([incidentId, createdAt(sort: Asc)], name: "idx_status_incident_timeline")
   @@index([visibility], name: "idx_status_visibility")
   @@map("status_update_logs")
+}
+
+/// User identity, credential store, and role-based access control
+model User {
+  id           String      @id @default(uuid())
+  email        String      @unique
+  passwordHash String      @db.Text
+  name         String
+  role         UserRole    @default(CITIZEN)
+  agency       AgencyType? // Optional agency for First Responders (e.g., FIRE, MEDICAL, POLICE, NGO)
+  badgeNumber  String?     // Official badge / radio operator ID for commanders
+  phone        String?
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+
+  @@index([email], name: "idx_user_email")
+  @@index([role], name: "idx_user_role")
+  @@map("users")
 }

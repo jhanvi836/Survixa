@@ -76,6 +76,15 @@ declare module "@prisma/client" {
     OFFLINE: "OFFLINE";
   };
 
+  export type UserRole = "CITIZEN" | "COMMANDER" | "DISPATCHER" | "ADMIN";
+
+  export const UserRole: {
+    CITIZEN: "CITIZEN";
+    COMMANDER: "COMMANDER";
+    DISPATCHER: "DISPATCHER";
+    ADMIN: "ADMIN";
+  };
+
   export type UpdateVisibility = "PUBLIC" | "INTERNAL_CONFIDENTIAL";
 
   export const UpdateVisibility: {
@@ -89,6 +98,7 @@ declare module "@prisma/client" {
     rescueUnit: any;
     unitDispatch: any;
     statusUpdateLog: any;
+    user: any;
     $connect(): Promise<void>;
     $disconnect(): Promise<void>;
   }
@@ -151,4 +161,11 @@ declare module "lucide-react" {
   export const Filter: LucideIcon;
   export const Info: LucideIcon;
   export const Terminal: LucideIcon;
+  export const Lock: LucideIcon;
+  export const Mail: LucideIcon;
+  export const UserCheck: LucideIcon;
+  export const LogIn: LucideIcon;
+  export const LogOut: LucideIcon;
+  export const Key: LucideIcon;
+  export const BadgeCheck: LucideIcon;
 }

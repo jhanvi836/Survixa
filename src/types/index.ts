@@ -112,6 +112,30 @@ export interface StatusUpdateLogRecord {
   createdAt: string | Date;
 }
 
+export type UserRole = "CITIZEN" | "COMMANDER" | "DISPATCHER" | "ADMIN";
+
+export interface UserRecord {
+  id: string;
+  email: string;
+  name: string;
+  role: UserRole;
+  agency?: AgencyType | null;
+  badgeNumber?: string | null;
+  phone?: string | null;
+  createdAt: string | Date;
+}
+
+export interface AuthTokenPayload {
+  userId: string;
+  email: string;
+  name: string;
+  role: UserRole;
+  agency?: AgencyType | null;
+  badgeNumber?: string | null;
+  iat?: number;
+  exp?: number;
+}
+
 export interface AITriageResult {
   originalLanguage: string;
   translatedText: string;
